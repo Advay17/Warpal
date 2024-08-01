@@ -26,4 +26,3 @@ func _on_player_character_change_state(state):
 			play("roll")
 			await animation_looped
 			p.change_state(p.states.RUN)
-			print("runs")

@@ -286,7 +286,7 @@ script = ExtResource("1_qmadk")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_2pvwe")
 animation = &"roll"
-frame_progress = 0.0273881
+frame_progress = 0.635034
 script = ExtResource("3_rsffv")
 
 [connection signal="state_change" from="." to="AnimatedSprite2D" method="_on_player_character_change_state"]

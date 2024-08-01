@@ -7,15 +7,14 @@ func _process(delta):
 	pass
 
 func _input(event):
-	if(event.is_action_pressed("jump")):
+	if(event.is_action_pressed("jump") and state!=states.ROLL):
 		velocity.y += JUMP_VELOCITY
 
 func _physics_process(delta):
 	# Add the gravity.
-	if not is_on_floor() or not state==states.ROLL:
-		velocity.y += gravity * delta
+	velocity.y += gravity * delta
+	if not is_on_floor():
 		jumping=true
-		print("runs")
 	elif jumping:
 		jumping=false
 		change_state(states.ROLL)
