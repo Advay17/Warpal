@@ -9,6 +9,8 @@ func _ready() -> void:
 
 
 func _on_frame_changed():
+	for polygon in get_tree().get_nodes_in_group("hitbox"):
+		polygon.queue_free()
 	var bitmap = BitMap.new()
 	var texture=sprite_frames.get_frame_texture(animation, frame)
 	bitmap.create_from_image_alpha(texture.get_image())

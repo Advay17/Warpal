@@ -1,8 +1,8 @@
 class_name GravityCharacter extends CharacterBody2D
 
 
-const SPEED = 300.0
-const JUMP_VELOCITY = -400.0
+@export var speed = 300.0
+@export var JUMP_VELOCITY = -400.0
 var facing_right=true
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
