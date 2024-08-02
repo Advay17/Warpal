@@ -3,13 +3,10 @@ enum states {IDLE, RUN, STILL_ATTACK, ROLL, RUN_ATTACK}
 var state=states.IDLE
 var jumping=false
 signal state_change(state)
-func _process(delta):
-	pass
 
 func _input(event):
 	if(event.is_action_pressed("jump") and state!=states.ROLL):
 		velocity.y += JUMP_VELOCITY
-
 func _physics_process(delta):
 	# Add the gravity.
 	velocity.y += gravity * delta

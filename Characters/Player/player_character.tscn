@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://c2dud7l80fm4j"]
+[gd_scene load_steps=33 format=3 uid="uid://c2dud7l80fm4j"]
 
 [ext_resource type="Script" path="res://Characters/Player/PlayerCharacter.gd" id="1_qmadk"]
 [ext_resource type="Texture2D" uid="uid://bm7qp1lsa18ib" path="res://Characters/Player/neon-ninja.svg" id="2_y8o7q"]
@@ -31,14 +31,6 @@ region = Rect2(256, 196, 128, 98)
 [sub_resource type="AtlasTexture" id="AtlasTexture_jiaoi"]
 atlas = ExtResource("2_y8o7q")
 region = Rect2(640, 98, 128, 98)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_agv7n"]
-atlas = ExtResource("2_y8o7q")
-region = Rect2(512, 98, 128, 98)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_wo7y8"]
-atlas = ExtResource("2_y8o7q")
-region = Rect2(384, 98, 128, 98)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bkpn8"]
 atlas = ExtResource("2_y8o7q")
@@ -152,16 +144,10 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_jiaoi")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_agv7n")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_wo7y8")
 }],
 "loop": true,
 "name": &"roll",
-"speed": 5.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -286,8 +272,10 @@ script = ExtResource("1_qmadk")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_2pvwe")
 animation = &"roll"
-frame_progress = 0.635034
+frame = 2
 script = ExtResource("3_rsffv")
+
+[node name="Camera2D" type="Camera2D" parent="."]
 
 [connection signal="state_change" from="." to="AnimatedSprite2D" method="_on_player_character_change_state"]
 [connection signal="frame_changed" from="AnimatedSprite2D" to="AnimatedSprite2D" method="_on_frame_changed"]

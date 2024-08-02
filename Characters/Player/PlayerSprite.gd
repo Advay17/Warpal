@@ -3,13 +3,14 @@ extends HitboxSprite
 @onready var p:GravityCharacter=get_parent()
 # Called when the node enters the scene tree for the first time.
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if p.facing_right:
-		flip_h=false
+		p.rotation=0
+		p.scale.y=1
 	else:
-		flip_h=true
+		p.rotation_degrees=180
+		p.scale.y=-1
 
 
 
