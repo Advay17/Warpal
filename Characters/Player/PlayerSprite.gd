@@ -27,3 +27,22 @@ func _on_player_character_change_state(state):
 			play("roll")
 			await animation_looped
 			p.change_state(p.states.RUN)
+		p.states.STILL_ATTACK:
+			play("standing_attack")
+			print(animation)
+			while(frame!=5):
+				await frame_changed
+			for body in parent.get_node("SwordAttackArea").get_overlapping_bodies():
+				#TODO: Add attack logic
+				pass
+			await animation_looped
+			p.change_state(p.states.IDLE)
+		p.states.RUN_ATTACK:
+			play("running_attack")
+			while(frame!=5):
+				await frame_changed
+			for body in parent.get_node("SwordAttackArea").get_overlapping_bodies():
+				#TODO: Add attack logic
+				pass
+			await animation_looped
+			p.change_state(p.states.RUN)

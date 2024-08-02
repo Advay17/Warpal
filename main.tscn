@@ -14,7 +14,7 @@ height = 110.0
 [node name="Node2D" type="Node2D"]
 
 [node name="PlayerCharacter" parent="." instance=ExtResource("1_untng")]
-position = Vector2(494, 275)
+position = Vector2(-1, 2)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 collision_mask = 7
@@ -32,9 +32,16 @@ texture = ExtResource("2_h1gwv")
 [node name="GameCamera" type="Camera2D" parent="."]
 script = ExtResource("3_e26ng")
 
-[node name="DeadZone" type="Area2D" parent="."]
+[node name="VerticalDeadZone" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DeadZone"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="VerticalDeadZone"]
+shape = SubResource("CapsuleShape2D_3crr2")
+
+[node name="HorizontalDeadZone" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HorizontalDeadZone"]
 shape = SubResource("CapsuleShape2D_3crr2")

@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://bquresc3miugx"]
+
+[ext_resource type="Script" path="res://Characters/Player/HitboxSprite.gd" id="1_0ae6n"]
+[ext_resource type="Script" path="res://Characters/Player/TeleBolt/TeleBolt.gd" id="1_4lhtr"]
+[ext_resource type="Texture2D" uid="uid://by1evlc8v3nyd" path="res://icon.svg" id="2_hagpj"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_stcit"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_hagpj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="TeleBolt" type="CharacterBody2D"]
+script = ExtResource("1_4lhtr")
+
+[node name="HitboxSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_stcit")
+script = ExtResource("1_0ae6n")

@@ -1,11 +1,14 @@
 extends GravityCharacter
 enum states {IDLE, RUN, STILL_ATTACK, ROLL, RUN_ATTACK}
+var motionless_states=[states.STILL_ATTACK, states.RUN_ATTACK, states.ROLL]
 var state=states.IDLE
 var jumping=false
 var floor=0
 var max_jump=0
+var sword_damage=20
 @onready var normal_collision_layer=collision_layer
 signal state_change(state)
+signal attack
 func _input(event):
 	if event.is_action_pressed("jump") and state!=states.ROLL and is_on_floor():
 		velocity.y += JUMP_VELOCITY
@@ -15,7 +18,15 @@ func _input(event):
 		else:
 			velocity.x=-speed
 		change_state(states.ROLL)
+	if event.is_action_pressed("attack"):
+		if state==states.IDLE:
+			change_state(states.STILL_ATTACK)
+			await state_change
+		elif state==states.RUN:
+			change_state(states.RUN_ATTACK)
+			await state_change
 func _physics_process(delta):
+	
 	# Add the gravity.
 	velocity.y += gravity * delta
 	if not is_on_floor():
@@ -35,7 +46,7 @@ func _physics_process(delta):
 		velocity.x = direction * speed
 	elif is_on_floor() and state!=states.ROLL:
 		velocity.x = move_toward(velocity.x, 0, speed)
-	if not state==states.ROLL:
+	if not state in motionless_states:
 		if(velocity.x>0):
 			facing_right=true
 			change_state(states.RUN)

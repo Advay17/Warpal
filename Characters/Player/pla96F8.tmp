@@ -192,7 +192,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_qdhao")
 }],
 "loop": true,
-"name": &"running_attack",
+"name": &"running attack",
 "speed": 10.0
 }, {
 "frames": [{
@@ -227,7 +227,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_7jjkb")
 }],
 "loop": true,
-"name": &"standing_attack",
+"name": &"standing attack",
 "speed": 10.0
 }, {
 "frames": [{
@@ -278,7 +278,7 @@ script = ExtResource("1_qmadk")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_2pvwe")
-frame_progress = 0.491894
+animation = &"standing attack"
 script = ExtResource("3_rsffv")
 
 [node name="GeneralArea" type="Area2D" parent="."]
