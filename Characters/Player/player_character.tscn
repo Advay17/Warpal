@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://c2dud7l80fm4j"]
+[gd_scene load_steps=35 format=3 uid="uid://c2dud7l80fm4j"]
 
 [ext_resource type="Script" path="res://Characters/Player/PlayerCharacter.gd" id="1_qmadk"]
 [ext_resource type="Texture2D" uid="uid://bm7qp1lsa18ib" path="res://Characters/Player/neon-ninja.svg" id="2_y8o7q"]
@@ -264,6 +264,13 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_28jlu"]
+size = Vector2(50, 81)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2stmp"]
+radius = 17.0
+height = 56.0
+
 [node name="PlayerCharacter" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 7
@@ -271,11 +278,24 @@ script = ExtResource("1_qmadk")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_2pvwe")
-animation = &"roll"
-frame = 2
+animation = &"standing attack"
+frame = 5
 script = ExtResource("3_rsffv")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="GeneralArea" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GeneralArea"]
+visible = false
+position = Vector2(0, 15.5)
+shape = SubResource("RectangleShape2D_28jlu")
+
+[node name="SwordAttackArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SwordAttackArea"]
+position = Vector2(33, 17)
+shape = SubResource("CapsuleShape2D_2stmp")
 
 [connection signal="state_change" from="." to="AnimatedSprite2D" method="_on_player_character_change_state"]
 [connection signal="frame_changed" from="AnimatedSprite2D" to="AnimatedSprite2D" method="_on_frame_changed"]
