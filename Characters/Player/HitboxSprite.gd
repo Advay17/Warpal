@@ -1,6 +1,6 @@
 class_name HitboxSprite extends AnimatedSprite2D
 
-@onready var parent:CharacterBody2D = get_parent()
+@onready var parent:CollisionObject2D = get_parent()
 var collisions_dict={}
 ##Dictionary of animations, where each animation has an offset and an array of frames
 func _ready() -> void:
@@ -9,7 +9,13 @@ func _ready() -> void:
 		collisions_dict[animation]=[]
 		collisions_dict[animation].resize(sprite_frames.get_frame_count(animation))
 
-
+func _process(delta):
+	if parent.facing_right:
+		parent.rotation=0
+		parent.scale.y=1
+	else:
+		parent.rotation_degrees=180
+		parent.scale.y=-1
 
 
 func _on_frame_changed():
@@ -26,6 +32,7 @@ func _on_frame_changed():
 				collisions_dict[animation][frame].append(Vector2(s.x, s.y)/2)
 		collisions_dict[animation][frame].append(bitmap.opaque_to_polygons(Rect2(Vector2.ZERO, texture.get_size())))
 		for poly in collisions_dict[animation][frame][1]:
+			print('runs')
 			var collision_polygon = CollisionPolygon2D.new()
 			collision_polygon.polygon = poly
 			parent.add_child(collision_polygon)

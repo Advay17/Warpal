@@ -280,7 +280,7 @@ script = ExtResource("1_qmadk")
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_2pvwe")
 animation = &"roll"
-frame_progress = 0.44343
+frame_progress = 0.440776
 offset = Vector2(0, -22)
 script = ExtResource("3_rsffv")
 metadata/_edit_lock_ = true

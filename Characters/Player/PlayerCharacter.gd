@@ -49,7 +49,7 @@ func _physics_process(delta):
 	var direction = Input.get_axis("left", "right")
 	if state==states.ROLL and not shape_cast_2d.is_colliding():
 		velocity.x=0
-	if direction:
+	if direction and not state==states.ROLL:
 		velocity.x = direction * speed
 	elif is_on_floor() and state!=states.ROLL:
 		velocity.x = move_toward(velocity.x, 0, speed)

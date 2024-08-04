@@ -1,0 +1,90 @@
+[gd_scene load_steps=15 format=3 uid="uid://lkhjr3383n3y"]
+
+[ext_resource type="Script" path="res://Characters/PlatformDrone.gd" id="1_g26pq"]
+[ext_resource type="Texture2D" uid="uid://bqvtbxnuu5x4k" path="res://Characters/1 Drones/Large Platform/Idle.png" id="2_4pdjn"]
+[ext_resource type="Texture2D" uid="uid://3qpqatkm3sec" path="res://Characters/1 Drones/Large Platform/Walk.png" id="3_grjf5"]
+[ext_resource type="Script" path="res://Characters/Player/HitboxSprite.gd" id="4_oqgbj"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_oujbw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pb21v"]
+atlas = ExtResource("2_4pdjn")
+region = Rect2(0, 0, 72, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y83qk"]
+atlas = ExtResource("2_4pdjn")
+region = Rect2(72, 0, 72, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jydi8"]
+atlas = ExtResource("2_4pdjn")
+region = Rect2(144, 0, 72, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eyhu0"]
+atlas = ExtResource("2_4pdjn")
+region = Rect2(216, 0, 72, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tjkd3"]
+atlas = ExtResource("3_grjf5")
+region = Rect2(0, 0, 72, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nla7t"]
+atlas = ExtResource("3_grjf5")
+region = Rect2(72, 0, 72, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nubvo"]
+atlas = ExtResource("3_grjf5")
+region = Rect2(144, 0, 72, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n0cur"]
+atlas = ExtResource("3_grjf5")
+region = Rect2(216, 0, 72, 72)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_v4p0o"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pb21v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y83qk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jydi8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eyhu0")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tjkd3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nla7t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nubvo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n0cur")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[node name="PlatformDrone" type="RigidBody2D"]
+collision_mask = 7
+physics_material_override = SubResource("PhysicsMaterial_oujbw")
+gravity_scale = 0.05
+script = ExtResource("1_g26pq")
+
+[node name="HitboxSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_v4p0o")
+script = ExtResource("4_oqgbj")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

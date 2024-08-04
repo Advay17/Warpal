@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://viawkvmrmwv8"]
+
+[ext_resource type="Script" path="res://Characters/Enemy/GenericEnemy.gd" id="1_i0368"]
+[ext_resource type="Texture2D" uid="uid://by1evlc8v3nyd" path="res://icon.svg" id="2_2rpnr"]
+[ext_resource type="Script" path="res://Characters/Player/HitboxSprite.gd" id="3_yaafl"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2sygu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_2rpnr")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_f3m43"]
+radius = 400.0
+
+[node name="GenericEnemy" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 7
+script = ExtResource("1_i0368")
+
+[node name="HitboxSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_2sygu")
+script = ExtResource("3_yaafl")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_f3m43")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
