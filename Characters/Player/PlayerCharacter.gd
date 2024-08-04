@@ -1,32 +1,37 @@
-extends GravityCharacter
-enum states {IDLE, RUN, STILL_ATTACK, ROLL, RUN_ATTACK}
-var motionless_states=[states.STILL_ATTACK, states.RUN_ATTACK, states.ROLL]
+class_name PlayerCharacter extends GravityCharacter
+enum states {IDLE, RUN, STILL_ATTACK, ROLL, RUN_ATTACK, BOLT}
+var motionless_states=[states.STILL_ATTACK, states.RUN_ATTACK, states.ROLL, states.BOLT]
 var state=states.IDLE
 var jumping=false
+var porting=false
 var floor=0
 var max_jump=0
 var sword_damage=20
-@onready var normal_collision_layer=collision_layer
+@onready var normal_collision_mask=collision_mask
 signal state_change(state)
 signal attack
 func _input(event):
 	if event.is_action_pressed("jump") and state!=states.ROLL and is_on_floor():
 		velocity.y += JUMP_VELOCITY
-	if event.is_action_pressed("roll") and is_on_floor() and state!=states.ROLL:
+	elif event.is_action_pressed("roll") and is_on_floor() and state!=states.ROLL:
 		if facing_right:
 			velocity.x=speed
 		else:
 			velocity.x=-speed
 		change_state(states.ROLL)
-	if event.is_action_pressed("attack"):
+	elif event.is_action_pressed("attack"):
 		if state==states.IDLE:
 			change_state(states.STILL_ATTACK)
 			await state_change
 		elif state==states.RUN:
 			change_state(states.RUN_ATTACK)
 			await state_change
+	elif event.is_action_pressed("bolt") and not state in motionless_states and not porting:
+		porting=true
+		change_state(states.BOLT)
+		pass
 func _physics_process(delta):
-	
+	print(rad_to_deg(position.angle_to(get_local_mouse_position())))
 	# Add the gravity.
 	velocity.y += gravity * delta
 	if not is_on_floor():
@@ -59,9 +64,9 @@ func _physics_process(delta):
 
 func change_state(new_state):
 	if(new_state==states.ROLL):
-		collision_layer=1
+		collision_mask=1
 	else:
-		collision_layer=normal_collision_layer
+		collision_mask=normal_collision_mask
 	if(state!=new_state):
 		state=new_state
 		state_change.emit(state)

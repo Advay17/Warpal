@@ -1,9 +1,8 @@
-[gd_scene load_steps=36 format=3 uid="uid://c2dud7l80fm4j"]
+[gd_scene load_steps=35 format=3 uid="uid://c2dud7l80fm4j"]
 
 [ext_resource type="Script" path="res://Characters/Player/PlayerCharacter.gd" id="1_qmadk"]
 [ext_resource type="Texture2D" uid="uid://bm7qp1lsa18ib" path="res://Characters/Player/neon-ninja.svg" id="2_y8o7q"]
 [ext_resource type="Script" path="res://Characters/Player/PlayerSprite.gd" id="3_rsffv"]
-[ext_resource type="Script" path="res://Characters/Player/StateMachine.gd" id="4_l0oah"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_omrdq"]
 atlas = ExtResource("2_y8o7q")
@@ -239,7 +238,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_8qpqb")
 }],
 "loop": true,
-"name": &"throw_down",
+"name": &"throw down",
 "speed": 5.0
 }, {
 "frames": [{
@@ -250,7 +249,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_1qatj")
 }],
 "loop": true,
-"name": &"throw_straight",
+"name": &"throw straight",
 "speed": 5.0
 }, {
 "frames": [{
@@ -261,7 +260,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_o2aqc")
 }],
 "loop": true,
-"name": &"throw_up",
+"name": &"throw up",
 "speed": 5.0
 }]
 
@@ -277,10 +276,9 @@ collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_qmadk")
 
-[node name="Sprite" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_2pvwe")
-animation = &"throw_straight"
-frame_progress = 0.0768233
+frame_progress = 0.491894
 script = ExtResource("3_rsffv")
 
 [node name="GeneralArea" type="Area2D" parent="."]
@@ -298,9 +296,5 @@ shape = SubResource("RectangleShape2D_28jlu")
 position = Vector2(33, 17)
 shape = SubResource("CapsuleShape2D_2stmp")
 
-[node name="StateMachine" type="Node2D" parent="."]
-script = ExtResource("4_l0oah")
-
-[connection signal="state_change" from="." to="Sprite" method="_on_player_character_change_state"]
-[connection signal="state_change" from="." to="StateMachine" method="_on_player_character_state_change"]
-[connection signal="frame_changed" from="Sprite" to="Sprite" method="_on_frame_changed"]
+[connection signal="state_change" from="." to="AnimatedSprite2D" method="_on_player_character_change_state"]
+[connection signal="frame_changed" from="AnimatedSprite2D" to="AnimatedSprite2D" method="_on_frame_changed"]

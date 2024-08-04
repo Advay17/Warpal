@@ -1,6 +1,6 @@
 class_name HitboxSprite extends AnimatedSprite2D
 
-@onready var parent:GravityCharacter = get_parent()
+@onready var parent:CharacterBody2D = get_parent()
 var collisions_dict={}
 ##Dictionary of animations, where each animation has an offset and an array of frames
 func _ready() -> void:

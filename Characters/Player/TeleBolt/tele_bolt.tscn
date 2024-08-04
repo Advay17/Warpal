@@ -1,23 +1,55 @@
-[gd_scene load_steps=5 format=3 uid="uid://bquresc3miugx"]
+[gd_scene load_steps=9 format=3 uid="uid://bquresc3miugx"]
 
-[ext_resource type="Script" path="res://Characters/Player/HitboxSprite.gd" id="1_0ae6n"]
 [ext_resource type="Script" path="res://Characters/Player/TeleBolt/TeleBolt.gd" id="1_4lhtr"]
-[ext_resource type="Texture2D" uid="uid://by1evlc8v3nyd" path="res://icon.svg" id="2_hagpj"]
+[ext_resource type="Texture2D" uid="uid://n110jaxhkemi" path="res://Characters/Player/TeleBolt/Telebolt.png" id="2_2ku28"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_stcit"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_4vdlk"]
+atlas = ExtResource("2_2ku28")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v63et"]
+atlas = ExtResource("2_2ku28")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ftdyf"]
+atlas = ExtResource("2_2ku28")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cybes"]
+atlas = ExtResource("2_2ku28")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mriqv"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_hagpj")
+"texture": SubResource("AtlasTexture_4vdlk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v63et")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ftdyf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cybes")
 }],
 "loop": true,
 "name": &"default",
 "speed": 5.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_y7cos"]
+radius = 8.0
+
 [node name="TeleBolt" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 5
 script = ExtResource("1_4lhtr")
 
-[node name="HitboxSprite" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_stcit")
-script = ExtResource("1_0ae6n")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_mriqv")
+frame_progress = 0.0957599
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_y7cos")
