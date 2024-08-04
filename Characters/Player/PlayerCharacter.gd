@@ -4,12 +4,13 @@ var motionless_states=[states.STILL_ATTACK, states.RUN_ATTACK, states.ROLL, stat
 var state=states.IDLE
 var jumping=false
 var porting=false
-var floor=0
+var floor_position=0
 var max_jump=0
 var sword_damage=20
 @onready var normal_collision_mask=collision_mask
 signal state_change(state)
 signal attack
+@onready var shape_cast_2d = $FloorDetector
 func _input(event):
 	if event.is_action_pressed("jump") and state!=states.ROLL:
 		velocity.y += JUMP_VELOCITY
@@ -31,26 +32,23 @@ func _input(event):
 		change_state(states.BOLT)
 		pass
 func _physics_process(delta):
-	print("this")
-	print(global_position)
-	print("mouse")
-	print(get_global_mouse_position())
-	print(rad_to_deg(get_angle_to(get_global_mouse_position())))
 	# Add the gravity.
 	velocity.y += gravity * delta
 	if not is_on_floor():
 		jumping=true
-		max_jump=min(max_jump, position.y-floor)
+		max_jump=min(max_jump, position.y-floor_position)
 	elif jumping:
 		jumping=false
 		if(max_jump<-250):
 			change_state(states.ROLL)
 		max_jump=0
 	else:
-		floor=position.y
+		floor_position=position.y
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction = Input.get_axis("left", "right")
+	if state==states.ROLL and not shape_cast_2d.is_colliding():
+		velocity.x=0
 	if direction:
 		velocity.x = direction * speed
 	elif is_on_floor() and state!=states.ROLL:

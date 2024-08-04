@@ -279,8 +279,8 @@ script = ExtResource("1_qmadk")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_2pvwe")
-animation = &"throw_straight"
-frame_progress = 0.406154
+animation = &"roll"
+frame_progress = 0.44343
 offset = Vector2(0, -22)
 script = ExtResource("3_rsffv")
 metadata/_edit_lock_ = true
@@ -305,6 +305,10 @@ shape = SubResource("CapsuleShape2D_2stmp")
 [node name="StateMachine" type="Node2D" parent="."]
 script = ExtResource("4_l0oah")
 metadata/_edit_lock_ = true
+
+[node name="FloorDetector" type="RayCast2D" parent="."]
+position = Vector2(20, 0)
+target_position = Vector2(0, 1e+06)
 
 [connection signal="state_change" from="." to="Sprite" method="_on_player_character_change_state"]
 [connection signal="state_change" from="." to="StateMachine" method="_on_player_character_state_change"]

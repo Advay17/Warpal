@@ -1,0 +1,2 @@
+city:https://anokolisa.itch.io/sidescroller-shooter-central-city
+player:https://pincholinco.itch.io/ninja-character-sprite?download
