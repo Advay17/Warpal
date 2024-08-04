@@ -280,12 +280,15 @@ script = ExtResource("1_qmadk")
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_2pvwe")
 animation = &"throw_straight"
-frame_progress = 0.0768233
+frame_progress = 0.406154
+offset = Vector2(0, -22)
 script = ExtResource("3_rsffv")
+metadata/_edit_lock_ = true
 
 [node name="GeneralArea" type="Area2D" parent="."]
 collision_layer = 2
 collision_mask = 0
+metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GeneralArea"]
 visible = false
@@ -293,13 +296,15 @@ position = Vector2(0, 15.5)
 shape = SubResource("RectangleShape2D_28jlu")
 
 [node name="SwordAttackArea" type="Area2D" parent="."]
+metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SwordAttackArea"]
-position = Vector2(33, 17)
+position = Vector2(33, 0)
 shape = SubResource("CapsuleShape2D_2stmp")
 
 [node name="StateMachine" type="Node2D" parent="."]
 script = ExtResource("4_l0oah")
+metadata/_edit_lock_ = true
 
 [connection signal="state_change" from="." to="Sprite" method="_on_player_character_change_state"]
 [connection signal="state_change" from="." to="StateMachine" method="_on_player_character_state_change"]

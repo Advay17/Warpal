@@ -13,3 +13,17 @@ func _physics_process(delta):
 		queue_free()
 		pass
 
+
+
+func _on_visible_on_screen_notifier_2d_screen_exited():
+	get_node("DeleteTimer").start(0)
+	pass # Replace with function body.
+
+
+func _on_visible_on_screen_notifier_2d_screen_entered():
+	get_node("DeleteTimer").stop()
+
+func _on_delete_timer_timeout():
+	parent.porting=false
+	queue_free()
+

@@ -5,9 +5,9 @@ extends Camera2D
 @onready var player:GravityCharacter=get_parent().get_node("PlayerCharacter")
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	position=player.position
-	horizontal_dead_zone.position=player.position
-	vertical_dead_zone.position=player.position
+	global_position=player.position
+	horizontal_dead_zone.global_position=player.global_position
+	vertical_dead_zone.global_position=player.global_position
 	pass # Replace with function body.
 
 
@@ -16,10 +16,10 @@ func _process(delta):
 	horizontal_dead_zone.position.y=player.position.y
 	vertical_dead_zone.position.x=player.position.x
 	if not horizontal_dead_zone.overlaps_area(player.get_node("GeneralArea")):
-		position.x=move_toward(position.x, player.position.x, max(player.velocity.x/60, 5))
-		horizontal_dead_zone.position.x=move_toward(horizontal_dead_zone.position.x, player.position.x, max(player.velocity.x/60, 5))
+		position.x=player.position.x
+		horizontal_dead_zone.global_position.x=move_toward(horizontal_dead_zone.global_position.x, player.global_position.x, max(player.velocity.x/60, 5))
 		pass
 	if not vertical_dead_zone.overlaps_area(player.get_node("GeneralArea")):
-		position.y=move_toward(position.y, player.position.y, max(player.velocity.y/60, 5))
-		vertical_dead_zone.position.y=move_toward(vertical_dead_zone.position.y, player.position.y, max(player.velocity.y/60, 5))
+		position.y=player.position.y
+		vertical_dead_zone.global_position.y=move_toward(vertical_dead_zone.global_position.y, player.global_position.y, max(player.velocity.y/60, 5))
 		pass

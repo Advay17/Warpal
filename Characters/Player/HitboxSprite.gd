@@ -29,6 +29,7 @@ func _on_frame_changed():
 			var collision_polygon = CollisionPolygon2D.new()
 			collision_polygon.polygon = poly
 			parent.add_child(collision_polygon)
+			collision_polygon.position+=offset
 			if centered:
 				collision_polygon.position -= collisions_dict[animation][frame][0]
 			# Generated polygon will not take into account the half-width and half-height offset
@@ -39,6 +40,7 @@ func _on_frame_changed():
 			var collision_polygon=CollisionPolygon2D.new()
 			collision_polygon.polygon = shape
 			parent.add_child(collision_polygon)
+			collision_polygon.position+=offset
 			if centered:
 				collision_polygon.position -= collisions_dict[animation][frame][0]
 			collision_polygon.add_to_group(parent.name+"hitbox")

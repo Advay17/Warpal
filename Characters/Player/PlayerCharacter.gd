@@ -11,7 +11,7 @@ var sword_damage=20
 signal state_change(state)
 signal attack
 func _input(event):
-	if event.is_action_pressed("jump") and state!=states.ROLL and is_on_floor():
+	if event.is_action_pressed("jump") and state!=states.ROLL:
 		velocity.y += JUMP_VELOCITY
 	elif event.is_action_pressed("roll") and is_on_floor() and state!=states.ROLL:
 		if facing_right:
@@ -26,12 +26,16 @@ func _input(event):
 		elif state==states.RUN:
 			change_state(states.RUN_ATTACK)
 			await state_change
-	elif event.is_action_pressed("bolt") and not state in motionless_states and not porting:
+	elif event.is_action_pressed("bolt") and not state in motionless_states and not porting and rad_to_deg(position.angle_to(get_local_mouse_position()))<0:
 		porting=true
 		change_state(states.BOLT)
 		pass
 func _physics_process(delta):
-	print(rad_to_deg(position.angle_to(get_local_mouse_position())))
+	print("this")
+	print(global_position)
+	print("mouse")
+	print(get_global_mouse_position())
+	print(rad_to_deg(get_angle_to(get_global_mouse_position())))
 	# Add the gravity.
 	velocity.y += gravity * delta
 	if not is_on_floor():
