@@ -21,6 +21,6 @@ func _process(delta):
 		horizontal_dead_zone.global_position.x=move_toward(horizontal_dead_zone.global_position.x, player.global_position.x, max(player.velocity.x/60, 5))
 		pass
 	if not vertical_dead_zone.overlaps_area(player.get_node("GeneralArea")):
-		position.y=player.position.y-200
+		position.y=player.position.y
 		vertical_dead_zone.global_position.y=move_toward(vertical_dead_zone.global_position.y, player.global_position.y, max(player.velocity.y/60, 5))
 		pass

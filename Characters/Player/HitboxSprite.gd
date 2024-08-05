@@ -32,7 +32,6 @@ func _on_frame_changed():
 				collisions_dict[animation][frame].append(Vector2(s.x, s.y)/2)
 		collisions_dict[animation][frame].append(bitmap.opaque_to_polygons(Rect2(Vector2.ZERO, texture.get_size())))
 		for poly in collisions_dict[animation][frame][1]:
-			print('runs')
 			var collision_polygon = CollisionPolygon2D.new()
 			collision_polygon.polygon = poly
 			parent.add_child(collision_polygon)
