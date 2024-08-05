@@ -41,18 +41,18 @@ func _on_player_character_state_change(state):
 				s.play("throw_down")
 				await s.animation_looped
 				var bolt = telebolt.instantiate()
-				p.add_child(bolt)
+				p.get_parent().add_child(bolt)
 				p.change_state(p.states.RUN)
 				pass
 			elif (abs(rad_to_deg(position.angle_to(get_local_mouse_position())))<120):
 				s.play("throw_straight")
 				await s.animation_looped
 				var bolt = telebolt.instantiate()
-				p.add_child(bolt)
+				p.get_parent().add_child(bolt)
 				p.change_state(p.states.RUN)
 			else:
 				s.play("throw_up")
 				await s.animation_looped
 				var bolt = telebolt.instantiate()
-				p.add_child(bolt)
+				p.get_parent().add_child(bolt)
 				p.change_state(p.states.RUN)

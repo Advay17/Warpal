@@ -5,7 +5,7 @@ var state=states.IDLE
 var jumping=false
 var porting=false
 var floor_position=0
-var max_jump=0
+var max_height=9223372036854775807
 var sword_damage=20
 @onready var normal_collision_mask=collision_mask
 signal state_change(state)
@@ -36,12 +36,13 @@ func _physics_process(delta):
 	velocity.y += gravity * delta
 	if not is_on_floor():
 		jumping=true
-		max_jump=min(max_jump, position.y-floor_position)
+		max_height=min(max_height, position.y)
 	elif jumping:
+		print(max_height)
 		jumping=false
-		if(max_jump<-250):
+		if(max_height-position.y<-250) and not (shape_cast_2d.is_colliding() and shape_cast_2d.get_collider() in get_tree().get_nodes_in_group("no_roll_floor")):
 			change_state(states.ROLL)
-		max_jump=0
+		max_height=9223372036854775807
 	else:
 		floor_position=position.y
 	# Get the input direction and handle the movement/deceleration.

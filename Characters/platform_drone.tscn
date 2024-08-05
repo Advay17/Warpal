@@ -4,8 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://bqvtbxnuu5x4k" path="res://Characters/1 Drones/Large Platform/Idle.png" id="2_4pdjn"]
 [ext_resource type="Texture2D" uid="uid://3qpqatkm3sec" path="res://Characters/1 Drones/Large Platform/Walk.png" id="3_grjf5"]
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_oujbw"]
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_pb21v"]
 atlas = ExtResource("2_4pdjn")
 region = Rect2(0, 0, 72, 72)
@@ -75,28 +73,35 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_5cxty"]
-size = Vector2(56, 20)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_togsq"]
+size = Vector2(64, 31.6667)
 
-[node name="PlatformDrone" type="StaticBody2D"]
-scale = Vector2(1.5, 1.5)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5cxty"]
+size = Vector2(56, 2)
+
+[node name="PlatformDrone" type="RigidBody2D"]
+scale = Vector2(3, 3)
 collision_mask = 7
-physics_material_override = SubResource("PhysicsMaterial_oujbw")
+collision_priority = 100000.0
+gravity_scale = 0.4
+lock_rotation = true
+freeze = true
 script = ExtResource("1_g26pq")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_v4p0o")
-frame_progress = 0.206449
+frame_progress = 0.105317
 
-[node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(-21, 24, 21, 24, 21, 19, 20, 19, 20, 18, 22, 18, 22, 17, 23, 17, 23, 14, 26, 14, 26, 15, 30, 15, 30, 4, 27, 4, 27, 2, 29, 2, 29, 1, 30, 1, 30, -2, 32, -2, 32, -11, 29, -11, 29, -10, 28, -10, 28, -8, -28, -8, -28, -10, -29, -10, -29, -11, -32, -11, -32, -2, -30, -2, -30, 1, -29, 1, -29, 2, -27, 2, -27, 4, -30, 4, -30, 15, -26, 15, -26, 14, -23, 14, -23, 17, -22, 17, -22, 18, -20, 18, -20, 19, -21, 19)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 7.83333)
+shape = SubResource("RectangleShape2D_togsq")
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0, -18)
+position = Vector2(0, -9)
 shape = SubResource("RectangleShape2D_5cxty")
 
 [connection signal="frame_changed" from="Sprite" to="Sprite" method="_on_frame_changed"]

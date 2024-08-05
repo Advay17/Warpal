@@ -128,7 +128,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"default",
-"speed": 5.0
+"speed": 2.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -266,7 +266,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_28jlu"]
-size = Vector2(50, 54)
+size = Vector2(50, 44)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2stmp"]
 radius = 17.0
@@ -275,10 +275,12 @@ height = 56.0
 [node name="PlayerCharacter" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 5
+collision_priority = 1e+06
 script = ExtResource("1_qmadk")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_2pvwe")
+frame_progress = 0.252515
 offset = Vector2(0, -22)
 script = ExtResource("3_rsffv")
 metadata/_edit_lock_ = true
@@ -289,7 +291,7 @@ collision_mask = 0
 metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GeneralArea"]
-position = Vector2(0, 2)
+position = Vector2(0, -3)
 shape = SubResource("RectangleShape2D_28jlu")
 
 [node name="SwordAttackArea" type="Area2D" parent="."]
