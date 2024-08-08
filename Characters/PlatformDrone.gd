@@ -4,8 +4,8 @@ var facing_right=true
 @onready var neutral_position=global_position
 var moving_up=false 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-var state=states.STILL
-enum states{MOVING_UP, STILL, MOVING_DOWN}
+@onready var area_2d:Area2D = $Area2D
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$Sprite.play()
@@ -13,6 +13,9 @@ func _ready():
 	pass # Replace with function body.
 
 func _physics_process(delta):
+	if area_2d.overlaps_body(player) and Input.is_action_pressed("jump"):
+		player.velocity.y-=linear_velocity.y
+		pass
 	global_position.x=neutral_position.x
 	scale=Vector2(2, 1.5)
 	if moving_up:

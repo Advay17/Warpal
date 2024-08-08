@@ -19,7 +19,7 @@ func _process(delta):
 		parent.scale.y=-1
 
 
-func _on_frame_changed():
+func _physics_process(delta):
 	#for polygon in get_tree().get_nodes_in_group(parent.name+"hitbox"):
 		#polygon.queue_free()
 	if not collisions_dict[animation][frame]:
