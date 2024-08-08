@@ -265,36 +265,31 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_28jlu"]
-size = Vector2(50, 44)
-
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2stmp"]
 radius = 17.0
 height = 56.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_va1n0"]
+height = 40.0
 
 [node name="PlayerCharacter" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 5
 collision_priority = 1e+06
 script = ExtResource("1_qmadk")
+speed = 200.0
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_2pvwe")
-frame_progress = 0.252515
+animation = &"throw_down"
 offset = Vector2(0, -22)
 script = ExtResource("3_rsffv")
 metadata/_edit_lock_ = true
 
-[node name="GeneralArea" type="Area2D" parent="."]
-collision_layer = 2
-collision_mask = 0
-metadata/_edit_lock_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GeneralArea"]
-position = Vector2(0, -3)
-shape = SubResource("RectangleShape2D_28jlu")
-
 [node name="SwordAttackArea" type="Area2D" parent="."]
+visible = false
+collision_layer = 0
+collision_mask = 4
 metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SwordAttackArea"]
@@ -306,8 +301,12 @@ script = ExtResource("4_l0oah")
 metadata/_edit_lock_ = true
 
 [node name="FloorDetector" type="RayCast2D" parent="."]
+visible = false
 position = Vector2(20, 0)
 target_position = Vector2(0, 1e+06)
+
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_va1n0")
 
 [connection signal="state_change" from="." to="Sprite" method="_on_player_character_change_state"]
 [connection signal="state_change" from="." to="StateMachine" method="_on_player_character_state_change"]

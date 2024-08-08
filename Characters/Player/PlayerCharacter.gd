@@ -38,7 +38,6 @@ func _physics_process(delta):
 		jumping=true
 		max_height=min(max_height, position.y)
 	elif jumping:
-		print(max_height)
 		jumping=false
 		if(max_height-position.y<-250) and not (shape_cast_2d.is_colliding() and shape_cast_2d.get_collider() in get_tree().get_nodes_in_group("no_roll_floor")):
 			change_state(states.ROLL)

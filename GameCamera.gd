@@ -16,11 +16,11 @@ func _process(delta):
 	horizontal_dead_zone.position.y=player.position.y
 	vertical_dead_zone.position.x=player.position.x
 	position_smoothing_speed=player.velocity.length()/75
-	if not horizontal_dead_zone.overlaps_area(player.get_node("GeneralArea")):
+	if not horizontal_dead_zone.overlaps_body(player):
 		position.x=player.position.x
 		horizontal_dead_zone.global_position.x=move_toward(horizontal_dead_zone.global_position.x, player.global_position.x, max(player.velocity.x/60, 5))
 		pass
-	if not vertical_dead_zone.overlaps_area(player.get_node("GeneralArea")):
+	if not vertical_dead_zone.overlaps_body(player):
 		position.y=player.position.y
 		vertical_dead_zone.global_position.y=move_toward(vertical_dead_zone.global_position.y, player.global_position.y, max(player.velocity.y/60, 5))
 		pass

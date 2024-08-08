@@ -14,16 +14,19 @@ func _ready():
 
 func _physics_process(delta):
 	global_position.x=neutral_position.x
-	scale=Vector2(3, 1.5)
-	global_position.y=move_toward(global_position.y, neutral_position.y, delta*40)
-func _on_area_2d_area_entered(area):
-	if area.get_parent()==player:
+	scale=Vector2(2, 1.5)
+	if moving_up:
+		global_position.y=move_toward(global_position.y, neutral_position.y, delta*40)
+
+
+
+func _on_area_2d_body_entered(body):
+	if body==player:
 		moving_up=false
 		set_deferred("freeze", false)
-		
 
 
-func _on_area_2d_area_exited(area):
-	if area.get_parent()==player:
+func _on_area_2d_body_exited(body):
+	if body==player:
 		set_deferred("freeze", true)
 		moving_up=true
