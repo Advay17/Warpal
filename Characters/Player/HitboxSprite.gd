@@ -12,11 +12,17 @@ func _ready() -> void:
 
 func _process(delta):
 	if parent.facing_right:
-		parent.rotation=0
-		parent.scale.y=1
+		if flip_h:
+			flip_h=false
+			for node in parent.get_children():
+				if node!=self:
+					node.position.x*=-1
 	else:
-		parent.rotation_degrees=180
-		parent.scale.y=-1
+		if not flip_h:
+			flip_h=true
+			for node in parent.get_children():
+				if node!=self:
+					node.position.x*=-1
 
 
 func _physics_process(delta):

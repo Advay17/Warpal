@@ -12,7 +12,7 @@ signal state_change(state)
 signal attack
 @onready var shape_cast_2d = $FloorDetector
 func _input(event):
-	if event.is_action_pressed("jump") and state!=states.ROLL:
+	if event.is_action_pressed("jump") and state!=states.ROLL and is_on_floor():
 		velocity.y += JUMP_VELOCITY
 	elif event.is_action_pressed("roll") and is_on_floor() and state!=states.ROLL:
 		if facing_right:
@@ -62,6 +62,15 @@ func _physics_process(delta):
 			change_state(states.RUN)
 		else:
 			change_state(states.IDLE)
+	if is_on_floor():
+		rotation=get_floor_angle()
+		if get_floor_normal().x<0:
+			rotation*=-1
+		velocity.rotated(rotation)
+	else:
+		rotation=0
+		if is_on_wall() and state!=states.ROLL:
+			velocity.y*=0.5
 	move_and_slide()
 
 func change_state(new_state):
