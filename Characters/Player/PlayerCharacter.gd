@@ -2,18 +2,25 @@ class_name PlayerCharacter extends GravityCharacter
 enum states {IDLE, RUN, STILL_ATTACK, ROLL, RUN_ATTACK, BOLT}
 var motionless_states=[states.STILL_ATTACK, states.RUN_ATTACK, states.ROLL, states.BOLT]
 var state=states.IDLE
-var jumping=false
+var jumping=false 
+var climbing=false
 var porting=false
 var floor_position=0
 var max_height=9223372036854775807
-var sword_damage=20
+var sword_damage=20 
+
 @onready var normal_collision_mask=collision_mask
 signal state_change(state)
 signal attack
 @onready var shape_cast_2d = $FloorDetector
 func _input(event):
-	if event.is_action_pressed("jump") and state!=states.ROLL and is_on_floor():
-		velocity.y += JUMP_VELOCITY
+	if event.is_action_pressed("jump") and state!=states.ROLL:
+		if(is_on_floor()):
+			velocity.y += JUMP_VELOCITY
+		elif is_on_wall():
+			climbing=true
+	if climbing and event.is_action_released("jump"):
+		climbing=false
 	elif event.is_action_pressed("roll") and is_on_floor() and state!=states.ROLL:
 		if facing_right:
 			velocity.x=speed
@@ -71,6 +78,8 @@ func _physics_process(delta):
 		rotation=0
 		if is_on_wall() and state!=states.ROLL:
 			velocity.y*=0.5
+	if(climbing):
+		velocity.y+=JUMP_VELOCITY*0.25
 	move_and_slide()
 
 func change_state(new_state):
