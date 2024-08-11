@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dte1p658rypoj"]
+
+[ext_resource type="PackedScene" uid="uid://boc7qiakbaqif" path="res://Characters/Enemy/basic_drone_enemy.tscn" id="1_pot8n"]
+
+[node name="IsolatedTestScene" type="Node2D"]
+
+[node name="GenericEnemy" parent="." instance=ExtResource("1_pot8n")]
+position = Vector2(524, 276)

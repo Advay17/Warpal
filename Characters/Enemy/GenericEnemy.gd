@@ -4,7 +4,7 @@ var player_detected:=false
 @onready var player:PlayerCharacter=get_tree().get_root().get_node("PlayerCharacter")
 func _ready():
 	var texture=$HitboxSprite.sprite_frames.get_frame_texture($HitboxSprite.animation, $HitboxSprite.frame)
-	$Area2D/CollisionShape2D.shape.radius=max(texture.width, texture.length)
+	$Area2D/CollisionShape2D.shape.radius=max(texture.get_size().x, texture.get_size().y)*10
 	pass
 func _on_area_2d_body_entered(body):
 	if body==player and ray_query(global_position, player.global_position)["collider"]==player:
