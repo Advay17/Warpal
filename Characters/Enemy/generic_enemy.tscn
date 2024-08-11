@@ -5,11 +5,11 @@
 [ext_resource type="Texture2D" uid="uid://j0tcxwlpkmih" path="res://Characters/1 Drones/3/Death.png" id="2_uch0u"]
 [ext_resource type="Texture2D" uid="uid://3ieqr3if3ski" path="res://Characters/1 Drones/3/Forward.png" id="3_1s0dh"]
 [ext_resource type="Texture2D" uid="uid://dxifvfpc005l7" path="res://Characters/Enemy/explosion spritesheets/explosion-6.png" id="3_7dcmq"]
-[ext_resource type="Script" path="res://Characters/HitboxSprite.gd" id="3_yaafl"]
 [ext_resource type="Texture2D" uid="uid://b7oad1oibrply" path="res://Characters/1 Drones/3/Fire1.png" id="5_ksoi0"]
 [ext_resource type="Texture2D" uid="uid://ccch5ojdm3pb3" path="res://Characters/1 Drones/3/Fire3.png" id="6_pwxdw"]
 [ext_resource type="Texture2D" uid="uid://b5lkkd5ijyuad" path="res://Characters/1 Drones/3/Back.png" id="7_x1smx"]
 [ext_resource type="Texture2D" uid="uid://4fkvcn5nv2m7" path="res://Characters/1 Drones/3/Fire2.png" id="7_xy7sw"]
+[ext_resource type="Script" path="res://Characters/Enemy/BasicEnemySprite.gd" id="10_mipkb"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vywm6"]
 atlas = ExtResource("2_uch0u")
@@ -427,7 +427,7 @@ script = ExtResource("1_i0368")
 sprite_frames = SubResource("SpriteFrames_2sygu")
 frame_progress = 0.476446
 flip_h = true
-script = ExtResource("3_yaafl")
+script = ExtResource("10_mipkb")
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 0

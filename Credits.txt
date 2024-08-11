@@ -1,2 +1,3 @@
 city:https://anokolisa.itch.io/sidescroller-shooter-central-city
 player:https://pincholinco.itch.io/ninja-character-sprite?download
+gravity pathfinding:https://github.com/MyNameIsntBob/2D_Platformer_Pathfinding_Demo/blob/master/Pathfinder.gd

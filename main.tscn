@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://b5pr2bb288k1h"]
+[gd_scene load_steps=45 format=3 uid="uid://b5pr2bb288k1h"]
 
 [ext_resource type="PackedScene" uid="uid://lkhjr3383n3y" path="res://Characters/platform_drone.tscn" id="1_euhwj"]
 [ext_resource type="PackedScene" uid="uid://c2dud7l80fm4j" path="res://Characters/Player/player_character.tscn" id="1_untng"]
@@ -1652,7 +1652,11 @@ metadata/_better_terrain = {
 "version": "0.2"
 }
 
-[node name="Node2D" type="Node2D"]
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_qaivu"]
+outlines = Array[PackedVector2Array]([PackedVector2Array(576, 272, 563, -2402, -561, -2399, -564, 285)])
+source_geometry_group_name = &"navigation_polygon_source_group"
+
+[node name="Main" type="Node2D"]
 
 [node name="PlatformDrone" parent="." instance=ExtResource("1_euhwj")]
 
@@ -1708,3 +1712,6 @@ layer_0/tile_data = PackedInt32Array(1179612, 2, 0, 1245148, 2, 1, 1310684, 2, 2
 
 [node name="PlayerCharacter" parent="." instance=ExtResource("1_untng")]
 position = Vector2(2, -54)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_qaivu")

@@ -1,5 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://boc7qiakbaqif"]
+[gd_scene load_steps=3 format=3 uid="uid://boc7qiakbaqif"]
 
 [ext_resource type="PackedScene" uid="uid://viawkvmrmwv8" path="res://Characters/Enemy/generic_enemy.tscn" id="1_bscep"]
+[ext_resource type="Script" path="res://Characters/Enemy/BasicDroneEnemy.gd" id="2_2are8"]
 
-[node name="GenericEnemy" instance=ExtResource("1_bscep")]
+[node name="BasicDroneEnemy" instance=ExtResource("1_bscep")]
+script = ExtResource("2_2are8")
+
+[connection signal="player_found" from="." to="." method="_on_player_found"]
+[connection signal="player_lost" from="." to="." method="_on_player_lost"]

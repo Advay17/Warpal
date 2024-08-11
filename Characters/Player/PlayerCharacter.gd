@@ -17,9 +17,9 @@ func _input(event):
 	if event.is_action_pressed("jump") and state!=states.ROLL:
 		if(is_on_floor()):
 			velocity.y += JUMP_VELOCITY
-		elif is_on_wall():
+		elif is_on_wall() and Input.get_axis("left", "right")!=0 and (facing_right and round(get_wall_normal().x)==-1) or (not facing_right and round(get_wall_normal().x)==1):
 			climbing=true
-	if climbing and event.is_action_released("jump"):
+	if climbing and (event.is_action_released("jump") or (facing_right and not Input.is_action_pressed("right")) or (not facing_right and not Input.is_action_pressed("left"))):
 		climbing=false
 	elif event.is_action_pressed("roll") and is_on_floor() and state!=states.ROLL:
 		if facing_right:
@@ -76,7 +76,7 @@ func _physics_process(delta):
 		velocity.rotated(rotation)
 	else:
 		rotation=0
-		if is_on_wall() and state!=states.ROLL:
+		if is_on_wall() and not is_on_floor() and state!=states.ROLL:
 			velocity.y*=0.5
 	if(climbing):
 		velocity.y+=JUMP_VELOCITY*0.25
