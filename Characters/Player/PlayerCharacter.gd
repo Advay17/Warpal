@@ -8,10 +8,12 @@ var porting=false
 var floor_position=0
 var max_height=9223372036854775807
 var sword_damage=20 
+@export var health=100
 
 @onready var normal_collision_mask=collision_mask
 signal state_change(state)
 signal attack
+signal died
 @onready var shape_cast_2d = $FloorDetector
 func _input(event):
 	if event.is_action_pressed("jump") and state!=states.ROLL:
@@ -90,4 +92,7 @@ func change_state(new_state):
 	if(state!=new_state):
 		state=new_state
 		state_change.emit(state)
-	
+
+func dmg(damage:int):
+	health-=damage
+	died.emit()

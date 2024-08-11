@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://c2dud7l80fm4j"]
+[gd_scene load_steps=42 format=3 uid="uid://c2dud7l80fm4j"]
 
 [ext_resource type="Script" path="res://Characters/Player/PlayerCharacter.gd" id="1_qmadk"]
 [ext_resource type="Texture2D" uid="uid://bm7qp1lsa18ib" path="res://Characters/Player/neon-ninja.svg" id="2_y8o7q"]
@@ -12,6 +12,30 @@ region = Rect2(0, 0, 128, 98)
 [sub_resource type="AtlasTexture" id="AtlasTexture_w7prd"]
 atlas = ExtResource("2_y8o7q")
 region = Rect2(128, 0, 128, 98)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k6tuh"]
+atlas = ExtResource("2_y8o7q")
+region = Rect2(0, 0, 128, 98)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_83xu6"]
+atlas = ExtResource("2_y8o7q")
+region = Rect2(128, 0, 128, 98)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_idxns"]
+atlas = ExtResource("2_y8o7q")
+region = Rect2(768, 98, 128, 98)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c3bie"]
+atlas = ExtResource("2_y8o7q")
+region = Rect2(768, 92, 128, 92)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sretb"]
+atlas = ExtResource("2_y8o7q")
+region = Rect2(128, 190, 128, 95)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dwto7"]
+atlas = ExtResource("2_y8o7q")
+region = Rect2(768, 92, 128, 92)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rr11b"]
 atlas = ExtResource("2_y8o7q")
@@ -119,6 +143,11 @@ region = Rect2(384, 392, 128, 98)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2pvwe"]
 animations = [{
+"frames": [],
+"loop": true,
+"name": &"death",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_omrdq")
@@ -129,6 +158,29 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k6tuh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_83xu6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_idxns")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c3bie")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sretb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dwto7")
+}],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -280,7 +332,8 @@ speed = 200.0
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_2pvwe")
-animation = &"throw_down"
+animation = &"new_animation"
+frame_progress = 0.675511
 offset = Vector2(0, -22)
 script = ExtResource("3_rsffv")
 metadata/_edit_lock_ = true
