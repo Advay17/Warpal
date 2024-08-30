@@ -1,14 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://de3wgq5bg1v6c"]
+[gd_scene load_steps=3 format=3 uid="uid://boc7qiakbaqif"]
 
 [ext_resource type="PackedScene" uid="uid://viawkvmrmwv8" path="res://Characters/Enemy/generic_enemy.tscn" id="1_bscep"]
-[ext_resource type="Script" path="res://Characters/Enemy/BasicDroneEnemy.gd" id="2_2are8"]
+[ext_resource type="Script" path="res://Characters/Enemy/Drones/Basic Drone/BasicDroneEnemy.gd" id="2_6m6l7"]
 
 [node name="BasicDroneEnemy" instance=ExtResource("1_bscep")]
-script = ExtResource("2_2are8")
+script = ExtResource("2_6m6l7")
 
 [node name="HitboxSprite" parent="." index="0"]
 animation = &"death"
 frame_progress = 0.0
+script = null
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." index="3"]
 target_desired_distance = 50.0

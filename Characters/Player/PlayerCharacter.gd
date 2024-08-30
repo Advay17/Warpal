@@ -36,7 +36,7 @@ func _input(event):
 		elif state==states.RUN:
 			change_state(states.RUN_ATTACK)
 			await state_change
-	elif event.is_action_pressed("bolt") and not state in motionless_states and not porting and rad_to_deg(position.angle_to(get_local_mouse_position()))<0:
+	elif event.is_action_pressed("bolt") and not state in motionless_states and not porting and ((facing_right and get_global_mouse_position().x>global_position.x) or (!facing_right and get_local_mouse_position().x<global_position.x)):
 		porting=true
 		change_state(states.BOLT)
 		pass
@@ -64,10 +64,10 @@ func _physics_process(delta):
 		velocity.x = move_toward(velocity.x, 0, speed)
 	if not state in motionless_states:
 		if(velocity.x>0):
-			facing_right=true
+			turn(true)
 			change_state(states.RUN)
 		elif(velocity.x<0):
-			facing_right=false
+			turn(false)
 			change_state(states.RUN)
 		else:
 			change_state(states.IDLE)

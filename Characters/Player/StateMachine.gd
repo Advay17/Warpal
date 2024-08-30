@@ -21,8 +21,8 @@ func _on_player_character_state_change(state):
 					return
 				await s.frame_changed
 			for body in p.get_node("SwordAttackArea").get_overlapping_bodies():
-				#TODO: Add attack logic
-				pass
+				if body is GenericEnemy:
+					body.dmg(20)
 			await s.animation_looped
 			p.change_state(p.states.IDLE)
 		p.states.RUN_ATTACK:
@@ -32,8 +32,8 @@ func _on_player_character_state_change(state):
 					return
 				await s.frame_changed
 			for body in p.get_node("SwordAttackArea").get_overlapping_bodies():
-				#TODO: Add attack logic
-				pass
+				if body is GenericEnemy:
+					body.dmg(20)
 			await s.animation_looped
 			p.change_state(p.states.RUN)
 		p.states.BOLT:

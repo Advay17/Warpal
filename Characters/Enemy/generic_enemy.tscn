@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=3 uid="uid://viawkvmrmwv8"]
+[gd_scene load_steps=67 format=3 uid="uid://viawkvmrmwv8"]
 
 [ext_resource type="Script" path="res://Characters/Enemy/GenericEnemy.gd" id="1_i0368"]
 [ext_resource type="Texture2D" uid="uid://di1j5y5m8rtke" path="res://Characters/1 Drones/3/Idle.png" id="2_bexi8"]
@@ -9,7 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://ccch5ojdm3pb3" path="res://Characters/1 Drones/3/Fire3.png" id="6_pwxdw"]
 [ext_resource type="Texture2D" uid="uid://b5lkkd5ijyuad" path="res://Characters/1 Drones/3/Back.png" id="7_x1smx"]
 [ext_resource type="Texture2D" uid="uid://4fkvcn5nv2m7" path="res://Characters/1 Drones/3/Fire2.png" id="7_xy7sw"]
-[ext_resource type="Script" path="res://Characters/Enemy/BasicEnemySprite.gd" id="10_mipkb"]
+[ext_resource type="Script" path="res://Characters/HitboxSprite.gd" id="10_vhvh1"]
+[ext_resource type="AudioStream" uid="uid://c75dp8jd180b3" path="res://Characters/Enemy/damaged.mp3" id="11_b7fm5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vywm6"]
 atlas = ExtResource("2_uch0u")
@@ -427,7 +428,7 @@ script = ExtResource("1_i0368")
 sprite_frames = SubResource("SpriteFrames_2sygu")
 frame_progress = 0.476446
 flip_h = true
-script = ExtResource("10_mipkb")
+script = ExtResource("10_vhvh1")
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 0
@@ -438,6 +439,9 @@ shape = SubResource("CircleShape2D_f3m43")
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_g41jh")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_b7fm5")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
