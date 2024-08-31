@@ -13,7 +13,7 @@ animation = &"death"
 frame_progress = 0.0
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." index="3"]
-target_desired_distance = 50.0
+target_desired_distance = 100.0
 
 [node name="NavigationRefresh" type="Timer" parent="NavigationAgent2D" index="0"]
 wait_time = 0.1
@@ -27,5 +27,6 @@ stream = ExtResource("4_fjjjk")
 
 [connection signal="player_found" from="." to="." method="_on_player_found"]
 [connection signal="player_lost" from="." to="." method="_on_player_lost"]
+[connection signal="animation_looped" from="HitboxSprite" to="." method="_on_hitbox_sprite_animation_looped"]
 [connection signal="target_reached" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_target_reached"]
 [connection signal="timeout" from="NavigationAgent2D/NavigationRefresh" to="." method="_on_navigation_refresh_timeout"]

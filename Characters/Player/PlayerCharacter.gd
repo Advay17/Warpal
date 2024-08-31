@@ -9,7 +9,8 @@ var floor_position=0
 var max_height=9223372036854775807
 var sword_damage=20 
 @export var health=100
-
+@onready var health_bar=get_parent().get_node("CanvasLayer/UI/HealthBar")
+#@onready var health_bar=$UI/HealthBar
 @onready var normal_collision_mask=collision_mask
 signal state_change(state)
 signal attack
@@ -29,7 +30,7 @@ func _input(event):
 		else:
 			velocity.x=-speed
 		change_state(states.ROLL)
-	elif event.is_action_pressed("attack"):
+	elif event.is_action_pressed("attack") and (not is_on_wall_only() or get_last_slide_collision().get_collider() is GenericEnemy):
 		if state==states.IDLE:
 			change_state(states.STILL_ATTACK)
 			await state_change
@@ -95,4 +96,6 @@ func change_state(new_state):
 
 func dmg(damage:int):
 	health-=damage
-	died.emit()
+	health_bar.value=health
+	if health<=0:
+		get_tree().reload_current_scene()

@@ -426,7 +426,8 @@ script = ExtResource("1_i0368")
 
 [node name="HitboxSprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_2sygu")
-frame_progress = 0.476446
+animation = &"idle_fire"
+frame_progress = 0.914185
 flip_h = true
 script = ExtResource("10_vhvh1")
 

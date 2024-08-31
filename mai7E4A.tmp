@@ -14,6 +14,20 @@ vertices = PackedVector2Array(557.008, 259.008, -572.148, 260.977, -616.828, -25
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(567, 269, 572, -2574, -627, -2569, -582, 271)])
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kjlxn"]
+bg_color = Color(0.6, 0.6, 0.6, 0.298039)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k4vp8"]
+bg_color = Color(0.494118, 0, 0.74902, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3crr2"]
 radius = 18.0
 height = 110.0
@@ -820,20 +834,6 @@ distance = -577.0
 normal = Vector2(-1, 0)
 distance = -578.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_58c5i"]
-bg_color = Color(0.6, 0.6, 0.6, 0.298039)
-corner_radius_top_left = 6
-corner_radius_top_right = 6
-corner_radius_bottom_right = 6
-corner_radius_bottom_left = 6
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dle7x"]
-bg_color = Color(0.494118, 0, 0.74902, 1)
-corner_radius_top_left = 6
-corner_radius_top_right = 6
-corner_radius_bottom_right = 6
-corner_radius_bottom_left = 6
-
 [node name="Main" type="Node2D"]
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
@@ -846,6 +846,28 @@ metadata/_edit_lock_ = true
 z_index = 1
 position_smoothing_enabled = true
 script = ExtResource("3_e26ng")
+
+[node name="UI" type="Control" parent="GameCamera"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -576.0
+offset_top = -324.0
+offset_right = 576.0
+offset_bottom = 324.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HealthBar" type="ProgressBar" parent="GameCamera/UI"]
+layout_mode = 0
+offset_right = 290.0
+offset_bottom = 27.0
+theme_override_styles/background = SubResource("StyleBoxFlat_kjlxn")
+theme_override_styles/fill = SubResource("StyleBoxFlat_k4vp8")
+value = 100.0
 
 [node name="VerticalDeadZone" type="Area2D" parent="."]
 visible = false
@@ -871,13 +893,14 @@ layer_0/tile_data = PackedInt32Array(1179612, 2, 0, 1245148, 2, 1, 1310684, 2, 2
 
 [node name="PlayerCharacter" parent="." instance=ExtResource("1_untng")]
 position = Vector2(2, -54)
+health = null
+JUMP_VELOCITY = null
 
 [node name="BasicDroneEnemy" parent="." instance=ExtResource("7_ipq8c")]
 position = Vector2(55, -166)
 health = 20
 
 [node name="BaseColor" type="Sprite2D" parent="."]
-visible = false
 z_index = -1
 position = Vector2(0, -48)
 scale = Vector2(200, 4.7)
@@ -894,20 +917,3 @@ collision_mask = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Border2"]
 shape = SubResource("WorldBoundaryShape2D_nheol")
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="UI" type="Control" parent="CanvasLayer"]
-z_index = 8
-layout_mode = 3
-anchors_preset = 0
-offset_right = 1152.0
-offset_bottom = 648.0
-
-[node name="HealthBar" type="ProgressBar" parent="CanvasLayer/UI"]
-layout_mode = 1
-offset_right = 541.0
-offset_bottom = 23.0
-theme_override_styles/background = SubResource("StyleBoxFlat_58c5i")
-theme_override_styles/fill = SubResource("StyleBoxFlat_dle7x")
-value = 100.0

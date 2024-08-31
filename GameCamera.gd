@@ -18,8 +18,12 @@ func _process(delta):
 	position_smoothing_speed=player.velocity.length()/75
 	if not horizontal_dead_zone.overlaps_body(player):
 		position.x=player.position.x
+		if player.facing_right:
+			position.x+=50
+		else:
+			position.x-=50
 		horizontal_dead_zone.global_position.x=move_toward(horizontal_dead_zone.global_position.x, player.global_position.x, max(player.velocity.x/60, 5))
-		pass
+		pass 
 	if not vertical_dead_zone.overlaps_body(player):
 		position.y=player.position.y
 		vertical_dead_zone.global_position.y=move_toward(vertical_dead_zone.global_position.y, player.global_position.y, max(player.velocity.y/60, 5))

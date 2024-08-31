@@ -5,7 +5,7 @@ signal player_found
 signal player_lost
 @onready var player:PlayerCharacter=get_parent().get_node("PlayerCharacter")
 @export var health=100 
-@onready var sprite=$HitboxSprite
+@onready var sprite:HitboxSprite=$HitboxSprite
 var dying=false
 var sfx_frame=-1
 func _ready():
@@ -38,6 +38,7 @@ func dmg(damage):
 
 func die():
 	dying=true
+	collision_layer=0
 	if sfx_frame==-1:
 		SFX[2].play()
 	sprite.play("death")
