@@ -19,7 +19,7 @@ func _input(event):
 	if event.is_action_pressed("jump") and state!=states.ROLL:
 		if(is_on_floor()):
 			velocity.y += JUMP_VELOCITY
-		elif is_on_wall() and Input.get_axis("left", "right")!=0 and (facing_right and round(get_wall_normal().x)==-1) or (not facing_right and round(get_wall_normal().x)==1):
+		elif is_on_wall() and not get_slide_collision(get_slide_collision_count()-1).get_collider_shape() is GenericEnemy and Input.get_axis("left", "right")!=0 and (facing_right and round(get_wall_normal().x)==-1) or (not facing_right and round(get_wall_normal().x)==1):
 			climbing=true
 	if climbing and (event.is_action_released("jump") or (facing_right and not Input.is_action_pressed("right")) or (not facing_right and not Input.is_action_pressed("left"))):
 		climbing=false

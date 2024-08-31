@@ -330,6 +330,9 @@ collision_priority = 1e+06
 script = ExtResource("1_qmadk")
 speed = 200.0
 
+[node name="SFX" type="Node2D" parent="."]
+position = Vector2(33, 0)
+
 [node name="AudioListener2D" type="AudioListener2D" parent="."]
 position = Vector2(33, 0)
 

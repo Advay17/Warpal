@@ -850,3 +850,5 @@ layer_0/tile_data = PackedInt32Array(1179612, 2, 0, 1245148, 2, 1, 1310684, 2, 2
 position = Vector2(2, -54)
 
 [node name="BasicDroneEnemy" parent="." instance=ExtResource("7_ipq8c")]
+position = Vector2(55, -166)
+health = 20

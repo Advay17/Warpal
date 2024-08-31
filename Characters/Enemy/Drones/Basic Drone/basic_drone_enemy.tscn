@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://boc7qiakbaqif"]
+[gd_scene load_steps=5 format=3 uid="uid://boc7qiakbaqif"]
 
 [ext_resource type="PackedScene" uid="uid://viawkvmrmwv8" path="res://Characters/Enemy/generic_enemy.tscn" id="1_bscep"]
 [ext_resource type="Script" path="res://Characters/Enemy/Drones/Basic Drone/BasicDroneEnemy.gd" id="2_6m6l7"]
+[ext_resource type="AudioStream" uid="uid://bmo6llja4ecxd" path="res://Characters/Enemy/attack.mp3" id="3_pj3oh"]
+[ext_resource type="AudioStream" uid="uid://bssrfb64k26kp" path="res://Characters/Enemy/die.mp3" id="4_fjjjk"]
 
 [node name="BasicDroneEnemy" instance=ExtResource("1_bscep")]
 script = ExtResource("2_6m6l7")
@@ -9,7 +11,6 @@ script = ExtResource("2_6m6l7")
 [node name="HitboxSprite" parent="." index="0"]
 animation = &"death"
 frame_progress = 0.0
-script = null
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." index="3"]
 target_desired_distance = 50.0
@@ -17,6 +18,12 @@ target_desired_distance = 50.0
 [node name="NavigationRefresh" type="Timer" parent="NavigationAgent2D" index="0"]
 wait_time = 0.1
 autostart = true
+
+[node name="Attack" parent="SFX" index="1"]
+stream = ExtResource("3_pj3oh")
+
+[node name="Death" parent="SFX" index="2"]
+stream = ExtResource("4_fjjjk")
 
 [connection signal="player_found" from="." to="." method="_on_player_found"]
 [connection signal="player_lost" from="." to="." method="_on_player_lost"]

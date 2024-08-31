@@ -14,15 +14,9 @@ func _process(delta):
 	if parent.facing_right:
 		if flip_h:
 			flip_h=false
-			for node in parent.get_children():
-				if node!=self:
-					node.position.x*=-1
 	else:
 		if not flip_h:
 			flip_h=true
-			for node in parent.get_children():
-				if node!=self:
-					node.position.x*=-1
 
 
 func _physics_process(delta):

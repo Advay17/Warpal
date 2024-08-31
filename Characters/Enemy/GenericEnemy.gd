@@ -4,15 +4,16 @@ var player_detected:=false
 signal player_found
 signal player_lost
 @onready var player:PlayerCharacter=get_parent().get_node("PlayerCharacter")
-@export var health=100
-@onready var sound:AudioStreamPlayer2D = $AudioStreamPlayer2D
+@export var health=100 
+@onready var sprite=$HitboxSprite
+var dying=false
+var sfx_frame=-1
 func _ready():
-	var texture=$HitboxSprite.sprite_frames.get_frame_texture($HitboxSprite.animation, $HitboxSprite.frame)
+	var texture=sprite.sprite_frames.get_frame_texture(sprite.animation, sprite.frame)
 	$Area2D/CollisionShape2D.shape.radius=max(texture.get_size().x, texture.get_size().y)*10
 	pass
 func _on_area_2d_body_entered(body):
 	var c=ray_query(global_position, player.global_position) 
-	print(c)
 	if body==player and c.has("collider") and c.get("collider")==player:
 		player_detected=true
 		player_found.emit()
@@ -31,9 +32,18 @@ func ray_query(from:Vector2i, to:Vector2i) -> Dictionary:
 
 func dmg(damage):
 	health-=damage
-	sound.play()
-	print(health)
+	SFX[0].play()
 	if(health<=0):
-		$HitboxSprite.play("death")
-		await $HitboxSprite.animation_looped
-		queue_free()
+		die()
+
+func die():
+	dying=true
+	if sfx_frame==-1:
+		SFX[2].play()
+	sprite.play("death")
+	if sfx_frame!=-1:
+		while sprite.frame!=sfx_frame:
+			await sprite.frame_changed
+		SFX[2].play()
+	await sprite.animation_looped
+	queue_free()
